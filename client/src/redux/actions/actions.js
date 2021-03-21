@@ -1,4 +1,4 @@
-import { SHOW_LOGIN, HIDE_LOGIN, SHOW_SIGNUP, HIDE_SIGNUP } from "./types";
+import { SHOW_LOGIN, HIDE_LOGIN, SHOW_SIGNUP, HIDE_SIGNUP } from "../constants/constants";
 
 export const showLogin = () => {
   return {

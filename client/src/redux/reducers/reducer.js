@@ -1,9 +1,4 @@
-import {
-  SHOW_LOGIN,
-  HIDE_LOGIN,
-  SHOW_SIGNUP,
-  HIDE_SIGNUP,
-} from "../actions/types";
+import { SHOW_LOGIN, HIDE_LOGIN, SHOW_SIGNUP, HIDE_SIGNUP } from "../constants/constants";
 
 const initialState = {
   loginvisible: false,

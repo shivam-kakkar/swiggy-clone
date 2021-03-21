@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SideImg from "./Images/Upper/SideImage.jfif";
+import SideImg from "./Images/SideImage.jfif";
 
 export const UpperContainer = styled.div`
   font-family: ProximaNova, Arial, "Helvetica Neue", sans-serif;

@@ -4,7 +4,7 @@ import { Input, Drawer, Form } from "antd";
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
 import { hideLogin, showSignup } from "../../redux/actions/actions";
-import LoginImage from "./Images/Upper/login-image.png";
+import LoginImage from "./Images/login-image.png";
 import styled from "styled-components";
 import axios from "axios";
 

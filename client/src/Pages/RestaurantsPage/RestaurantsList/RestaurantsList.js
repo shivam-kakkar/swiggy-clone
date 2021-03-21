@@ -49,7 +49,7 @@ const RestaurantsList = () => {
       foodCategory: "Desserts, Snacks",
       image:
         "https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-      rating: 4.0,
+      rating: 2.5,
       deliveryTime: 39,
       costForTwo: 200,
     },

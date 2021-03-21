@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Input, Drawer, Form } from "antd";
 import { connect } from "react-redux";
 import { hideSignup, showLogin } from "../../redux/actions/actions";
-import SignupImage from "./Images/Upper/login-image.png";
+import SignupImage from "./Images/login-image.png";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -42,7 +42,7 @@ const inputStyle = {
   fontSize: "17px",
 };
 
-const Signup = (props) => {
+const Signup = props => {
   const [form] = Form.useForm();
   const [form2] = Form.useForm();
 
@@ -56,7 +56,7 @@ const Signup = (props) => {
         confirmPassword: confirmPassword,
         referrer: referrer,
       })
-      .then((result) => {
+      .then(result => {
         if (result.data.error) {
           alert(result.data.message);
         } else {
@@ -71,7 +71,7 @@ const Signup = (props) => {
           });
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
         alert("something has went wrong");
       });
@@ -80,8 +80,8 @@ const Signup = (props) => {
   const otpForm = () => {
     // console.log(code)
     if (otp == code && Date.now() < new Date(codeExpires)) {
-    // console.log('working')
-    
+      // console.log('working')
+
       axios
         .post("http://localhost:8080/http://localhost:5000/users/activate", {
           phoneNumber: phoneNumber,
@@ -89,7 +89,7 @@ const Signup = (props) => {
           email: email,
           password: password,
         })
-        .then((result) => {
+        .then(result => {
           if (result.data.error) {
             alert(result.data.message);
           } else {
@@ -97,13 +97,11 @@ const Signup = (props) => {
             // console.log(result.data)
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
-    }
-
-    else {
-      alert('Enter a valid otp');
+    } else {
+      alert("Enter a valid otp");
     }
   };
 
@@ -129,25 +127,25 @@ const Signup = (props) => {
   const [code, setCode] = useState("");
   const [codeExpires, setCodeExpires] = useState("");
 
-  const phoneChange = (e) => {
+  const phoneChange = e => {
     setPhoneNumber(e.target.value);
   };
-  const nameChange = (e) => {
+  const nameChange = e => {
     setName(e.target.value);
   };
-  const emailChange = (e) => {
+  const emailChange = e => {
     setEmail(e.target.value);
   };
-  const passwordChange = (e) => {
+  const passwordChange = e => {
     setPassword(e.target.value);
   };
-  const confirmPasswordChange = (e) => {
+  const confirmPasswordChange = e => {
     setConfirmPassword(e.target.value);
   };
-  const referrerChange = (e) => {
+  const referrerChange = e => {
     setReferrer(e.target.value);
   };
-  const otpChange = (e) => {
+  const otpChange = e => {
     setOtp(e.target.value);
   };
 
@@ -213,11 +211,7 @@ const Signup = (props) => {
               //  noStyle="true"
               rules={[{ required: true, message: "Enter your Name" }]}
             >
-              <Input
-                onChange={nameChange}
-                placeholder="Name"
-                style={inputStyle}
-              />
+              <Input onChange={nameChange} placeholder="Name" style={inputStyle} />
             </Form.Item>
             <Form.Item
               // noStyle="true"
@@ -233,11 +227,7 @@ const Signup = (props) => {
                 },
               ]}
             >
-              <Input
-                onChange={emailChange}
-                placeholder="Email"
-                style={inputStyle}
-              />
+              <Input onChange={emailChange} placeholder="Email" style={inputStyle} />
             </Form.Item>
             <Form.Item
               name="Password"
@@ -254,11 +244,7 @@ const Signup = (props) => {
               ]}
               hasFeedback
             >
-              <Input.Password
-                onChange={passwordChange}
-                placeholder="Password"
-                style={inputStyle}
-              />
+              <Input.Password onChange={passwordChange} placeholder="Password" style={inputStyle} />
             </Form.Item>
             <Form.Item
               name="Confirm"
@@ -280,9 +266,7 @@ const Signup = (props) => {
                       return Promise.resolve();
                     }
 
-                    return Promise.reject(
-                      "The two passwords that you entered do not match!"
-                    );
+                    return Promise.reject("The two passwords that you entered do not match!");
                   },
                 }),
               ]}
@@ -301,11 +285,7 @@ const Signup = (props) => {
                 // noStyle="true"
                 name="ReferralCode"
               >
-                <Input
-                  onChange={referrerChange}
-                  placeholder="Referral Code"
-                  style={inputStyle}
-                />
+                <Input onChange={referrerChange} placeholder="Referral Code" style={inputStyle} />
               </Form.Item>
             </div>
             <ContinueButton type="submit" id="continueButton">
@@ -336,22 +316,13 @@ const Signup = (props) => {
               <Image src={SignupImage} />
             </div>
           </div>
-          <Form
-            className="mt-5"
-            layout="vertical"
-            form={form2}
-            onFinish={otpForm}
-          >
+          <Form className="mt-5" layout="vertical" form={form2} onFinish={otpForm}>
             <Form.Item name="Phone">
               <Input placeholder="Phone number" style={inputStyle} readOnly />
             </Form.Item>
             <div>
               <Form.Item>
-                <Input
-                  onChange={otpChange}
-                  placeholder="One time password"
-                  style={inputStyle}
-                />
+                <Input onChange={otpChange} placeholder="One time password" style={inputStyle} />
               </Form.Item>
             </div>
             <ContinueButton>Verify OTP</ContinueButton>
@@ -362,7 +333,7 @@ const Signup = (props) => {
   );
 };
 
-const matchStateToProps = (state) => ({
+const matchStateToProps = state => ({
   visible: state.reducer.signupvisible,
 });
 

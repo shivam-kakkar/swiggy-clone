@@ -1,6 +1,6 @@
 import React from "react";
-import Upper from "./Upper";
-import Footer from "./Footer";
+import Upper from "./Upper/Upper";
+import Footer from "./Footer/Footer";
 
 const LandingPage = () => {
   return (

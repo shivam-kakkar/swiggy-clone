@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { showLogin, showSignup } from "../../redux/actions/actions";
+import { showLogin, showSignup } from "../../../redux/actions/actions";
 import { withRouter } from "react-router-dom";
 import {
   UpperContainer,
@@ -22,22 +22,22 @@ import {
   AppStoreIcon,
   MobileImage1,
   MobileImage2,
-} from "./UpperStyledComponents";
-import logo from "./Images/Upper/Swiggy-Logo.png";
-import Sec2_1 from "./Images/Upper/Sec2_1.png";
-import Sec2_2 from "./Images/Upper/Sec2_2.png";
-import Sec2_3 from "./Images/Upper/Sec2_3.png";
-import Mobile1 from "./Images/Upper/Sec3_1.png";
-import Mobile2 from "./Images/Upper/Sec3_2.png";
-import PlayStore from "./Images/Upper/playStore.png";
-import AppStore from "./Images/Upper/appStore.png";
-import LocationIcon from "./Images/Upper/locateMe.PNG";
+} from "./styles";
+import logo from "./Images/Swiggy-Logo.png";
+import Sec2_1 from "./Images/Sec2_1.png";
+import Sec2_2 from "./Images/Sec2_2.png";
+import Sec2_3 from "./Images/Sec2_3.png";
+import Mobile1 from "./Images/Sec3_1.png";
+import Mobile2 from "./Images/Sec3_2.png";
+import PlayStore from "./Images/playStore.png";
+import AppStore from "./Images/appStore.png";
+import LocationIcon from "./Images/locateMe.PNG";
 import "antd/dist/antd.css";
 import { Input } from "antd";
-import LoginContainer from "./LoginContainer";
-import SignupContainer from "./SignupContainer";
+import LoginContainer from "../../../Components/LoginContainer/LoginContainer";
+import SignupContainer from "../../../Components/SignupContainer/SignupContainer";
 
-const Upper = (props) => {
+const Upper = props => {
   const showLoginDrawer = () => {
     props.showLogin();
   };
@@ -49,12 +49,21 @@ const Upper = (props) => {
     navigator.geolocation.getCurrentPosition(function (position) {
       console.log("Latitude is :", position.coords.latitude);
       console.log("Longitude is :", position.coords.longitude);
+      localStorage.setItem("location", position);
     });
   };
 
   // useEffect(() => {
+  //   const location = localStorage.getItem("location");
+
+  //   if (location) {
+  //     props.history.push("/restaurants");
+  //   }
+  // }, []);
+
+  // useEffect(() => {
   //   if ("geolocation" in navigator) {
-  //     props.history.push("./restaurants");
+  //     props.history.push("/restaurants");
   //     console.log(navigator);
   //   } else {
   //     console.log("Not Available");
@@ -78,7 +87,7 @@ const Upper = (props) => {
             </CustomButton>
             <Title>Hungry ?</Title>
             <Subtitle>Order food from favourite restaurants near you.</Subtitle>
-            <div style={{ marginBottom: 16 }}>
+            <div style={{ marginBottom: 16, display: "flex" }}>
               <Input
                 size="large"
                 style={{
@@ -88,14 +97,11 @@ const Upper = (props) => {
                 }}
                 placeholder="Enter your delivery location"
                 suffix={
-                  <a href="" onClick={locate} style={{ border: "none" }}>
-                    <LocationButton src={LocationIcon} />
-                  </a>
+                  // <button href="" onClick={locate} style={{ border: "none" }}>
+                  <LocationButton src={LocationIcon} onClick={locate} />
+                  // </button>
                 }
               />
-              {/* <CustomButton large background="blue" onClick={locate}>
-                Locate
-              </CustomButton> */}
               <CustomButton large background="#fc8019">
                 FIND FOOD
               </CustomButton>
@@ -104,25 +110,15 @@ const Upper = (props) => {
               <Subtitle2>POPULAR CITIES IN INDIA</Subtitle2>
               <UL className="list-inline">
                 <li className="list-inline-item font-weight-bold">Ahmedabad</li>
-                <li className="list-inline-item font-weight-bold text-muted">
-                  Bangalore
-                </li>
+                <li className="list-inline-item font-weight-bold text-muted">Bangalore</li>
                 <li className="list-inline-item font-weight-bold">Chennai</li>
-                <li className="list-inline-item font-weight-bold text-muted">
-                  Delhi
-                </li>
+                <li className="list-inline-item font-weight-bold text-muted">Delhi</li>
                 <li className="list-inline-item font-weight-bold">Gurgaon</li>
-                <li className="list-inline-item font-weight-bold text-muted">
-                  Hyderabad
-                </li>
+                <li className="list-inline-item font-weight-bold text-muted">Hyderabad</li>
                 <li className="list-inline-item font-weight-bold">Kolkata</li>
-                <li className="list-inline-item font-weight-bold text-muted">
-                  Mumbai
-                </li>
+                <li className="list-inline-item font-weight-bold text-muted">Mumbai</li>
                 <li className="list-inline-item font-weight-bold">Pune</li>
-                <li className="list-inline-item font-weight-bold text-muted">
-                  & more.
-                </li>
+                <li className="list-inline-item font-weight-bold text-muted">& more.</li>
               </UL>
             </div>
           </Container>
@@ -135,48 +131,33 @@ const Upper = (props) => {
       <div className="row">
         <div className="col-sm-4 p-0">
           <Card className="card">
-            <CardImage
-              className="card-img-top"
-              src={Sec2_1}
-              alt="Card image cap"
-            />
+            <CardImage className="card-img-top" src={Sec2_1} alt="Card image cap" />
             <div className="card-body text-center">
               <h5 className="card-title text-white">No Minimum Order</h5>
               <div className="card-text text-white">
-                Order in for yourself or for the group, with no restrictions on
-                order value
+                Order in for yourself or for the group, with no restrictions on order value
               </div>
             </div>
           </Card>
         </div>
         <div className="col-sm-4 p-0">
           <Card className="card">
-            <CardImage
-              className="card-img-top"
-              src={Sec2_2}
-              alt="Card image cap"
-            />
+            <CardImage className="card-img-top" src={Sec2_2} alt="Card image cap" />
             <div className="card-body text-center">
               <h5 className="card-title text-white">Live Order Tracking</h5>
               <div className="card-text text-white">
-                Know where your order is at all times, from the restaurant to
-                your doorstep
+                Know where your order is at all times, from the restaurant to your doorstep
               </div>
             </div>
           </Card>
         </div>
         <div className="col-sm-4 p-0">
           <Card className="card">
-            <CardImage
-              className="card-img-top"
-              src={Sec2_3}
-              alt="Card image cap"
-            />
+            <CardImage className="card-img-top" src={Sec2_3} alt="Card image cap" />
             <div className="card-body text-center">
               <h5 className="card-title text-white">Lightning-Fast Delivery</h5>
               <div className="card-text text-white">
-                Experience Swiggy's superfast delivery for food delivered fresh
-                & on time
+                Experience Swiggy's superfast delivery for food delivered fresh & on time
               </div>
             </div>
           </Card>
@@ -188,8 +169,7 @@ const Upper = (props) => {
             <div className="card-body">
               <Title2 className="card-title">Restaurants in your pocket</Title2>
               <h5 className="card-subtitle mt-4 text-muted">
-                Order from your favorite restaurants & track on the go, with the
-                all-new Swiggy app.
+                Order from your favorite restaurants & track on the go, with the all-new Swiggy app.
               </h5>
               <div className="row" style={{ marginTop: "55px" }}>
                 <div className="col-6">
